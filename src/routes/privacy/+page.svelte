@@ -55,7 +55,7 @@
         
             <h2>Contact Us</h2>
         
-            <p>If you have any questions about this Privacy Policy, please <a href="mailto:mahesh@gmail.com" class="underline">Contact</a> us.</p>
+            <p>If you have any questions about this Privacy Policy, please <a href="mailto:{config.contactMail}" class="underline">Contact</a> us.</p>
         
             <p>By using EpicofCode.com, you agree to the terms outlined in this Privacy Policy.</p>
 		</div>
