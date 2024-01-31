@@ -4,18 +4,19 @@
 	import { onMount } from 'svelte';
 	import { error } from '@sveltejs/kit'
 	import type { Post } from '$lib/types/types.js'
-	import {ChevronsRight} from 'lucide-svelte';
-	import {ChevronsLeft} from 'lucide-svelte';
+	import ChevronsRight from '$lib/icons/ChevronsRight.svelte'
+	import ChevronsLeft from '$lib/icons/ChevronsRight.svelte'
 
 	async function fetchMenus() {
-    try {
-      const response = await fetch('/api/go-web');
-      const posts: Post[] = await response.json();
-      return posts;
-    } catch (e) {
-      throw error(404, `Could not find items`);
-    }
-  }
+		try {
+			const response = await fetch('/api/go-web');
+			const posts: Post[] = await response.json();
+			return posts;
+		} catch (e) {
+			throw error(404, `Could not find items`);
+		}
+  	}
+	
   	let posts: Post[] = [];
 
 	onMount(async () => {
