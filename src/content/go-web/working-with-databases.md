@@ -8,8 +8,9 @@ Go relies on database drivers to interact with various database management syste
 
 Before you can start working with databases, you need to install the required drivers. Open a terminal and execute the following command:
 
-`go get -u github.com/go-sql-driver/mysql`
-
+```bash
+go get -u github.com/go-sql-driver/mysql
+```
 This driver allows Go programs to connect and interact with MySQL databases.
 
 ## Example: Connecting to MySQL and Executing a Query

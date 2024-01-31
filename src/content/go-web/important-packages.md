@@ -6,7 +6,11 @@ indexVal: 11
 
 Go, with its simplicity and efficiency, provides a robust set of standard libraries and third-party packages that are essential for web development. Below are some important packages that are commonly used in web development projects in Go.
 
-### 3. `github.com/google/uuid` - UUID Package
+## 1. UUID Package
+
+```bash
+go get -u github.com/google/uuid
+```
 
 The `google/uuid` package provides support for Universally Unique Identifiers (UUIDs). UUIDs are useful for generating unique identifiers in web applications, such as creating session IDs or primary keys for database records.
 
@@ -25,7 +29,11 @@ func main() {
 	fmt.Println("UUID:", id)
 }
 ```
-### 4. `golang.org/x/crypto/bcrypt` - Password Hashing
+## 2. Password Hashing
+
+```bash
+go get -u golang.org/x/crypto/bcrypt
+```
 
 The `golang.org/x/crypto/bcrypt` package is commonly used for secure password hashing. Storing passwords securely is crucial, and bcrypt is a widely accepted algorithm for this purpose.
 
@@ -61,5 +69,9 @@ func main() {
 ```
  
 
-### 3. `gorm.io/gorm` - ORM for Go 
+## 3. ORM for Go
+
+```bash
+go get -u gorm.io/gorm
+```
 GORM is an Object Relational Mapping (ORM) library for the Go programming language. It provides a powerful and expressive way to interact with databases, enabling developers to work with database entities using Go structs and queries rather than raw SQL. GORM supports various relational databases, including MySQL, PostgreSQL, SQLite, and others. Learn more about it on [gorm.io](https://gorm.io/docs/)

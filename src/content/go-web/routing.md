@@ -14,7 +14,13 @@ Before using `gorilla/mux`, you need to install it. Open a terminal and run the 
 go get -u github.com/gorilla/mux
 ```
 
-Before installation, you have to run `go mod init <module_name>` command. It creates a go. mod file that defines the module's path and sets it up for dependency management.
+Before installation, you have to run following command:
+
+```bash
+go mod init <module_name>
+```
+
+It creates a go. mod file that defines the module's path and sets it up for dependency management.
 
 ## Basic Routing
 
@@ -69,7 +75,7 @@ router.HandleFunc("/articles/{category:[a-z]+}/{id:[0-9]+}", func(w http.Respons
 }).Methods("GET")
 ```
 
-In this example, the route pattern `/articles/{category:[a-z]+}/{id:[0-9]+}` ensures that `category` is lowercase letters, and `id` is numeric.
+In this example, the route pattern '/articles/{category:[a-z]+}/{id:[0-9]+}' ensures that `category` is lowercase letters, and `id` is numeric.
     
 ## Subrouters
 `gorilla/mux` allows you to create subrouters, which can be useful for organizing routes:
