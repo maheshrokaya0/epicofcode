@@ -9,36 +9,36 @@ The `net/http` package in Go provides a rich set of functionalities for working 
 ## Setting Up a Simple HTTP Server
 Lets understand the previous example.
 ```go
-    package main
+package main
     
-    import (
-    	"fmt"
-    	"net/http"
-    )
-    
-    func main() {
-    	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-    		fmt.Fprint(w, "Hello, World!")
-    	})
-    
-    	http.ListenAndServe(":8080", nil)
-    } 
+import (
+	"fmt"
+	"net/http"
+)
+
+func main() {
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, "Hello, World!")
+	})
+
+	http.ListenAndServe(":8080", nil)
+} 
 ```
 This program sets up a server that listens on port 8080 and responds with "Hello, World!" for any request to the root ("/") path.
 
 ## Handling HTTP Requests
 
 ```go
-    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-    	fmt.Fprint(w, "Hello, World!")
-    })
+http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "Hello, World!")
+})
 ```
 
 The `http.HandleFunc` function is used to define how the server responds to specific routes. The provided function takes two parameters: `http.ResponseWriter` and `*http.Request`. The response writer is used to send the response back to the client, and the request contains information about the incoming request.
 
 ## Starting Server
 ```go
-	http.ListenAndServe(":80", nil)
+http.ListenAndServe(":80", nil)
 ```
 This line starts the HTTP server. It listens on port 8080, and the  `nil` argument means that it will use the default ServeMux (multiplexer) provided by the `http` package. The server will handle incoming HTTP requests based on the registered handlers.
 
@@ -47,26 +47,26 @@ This line starts the HTTP server. It listens on port 8080, and the  `nil` argume
 
 You can easily handle query parameters using the `r.URL.Query()` method. Let's modify our server to greet a user based on a provided name parameter:
 ```go
-    func main() {
-    	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-    		name := r.URL.Query().Get("name")
-    		if name == "" {
-    			name = "Guest"
-    		}
-    		fmt.Fprintf(w, "Hello, %s!", name)
-    	})
-    
-    	// ... rest of the code
-    } 
+func main() {
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		name := r.URL.Query().Get("name")
+		if name == "" {
+			name = "Guest"
+		}
+		fmt.Fprintf(w, "Hello, %s!", name)
+	})
+
+	// ... rest of the code
+} 
 ```
 Now, you can visit http://localhost:8080/?name=John and the server will respond with "Hello, John!"
 
 
 ## Serving Static Files
 ```go
-    staticDir := http.Dir("./static")
-    fileServer := http.FileServer(staticDir)
-    http.Handle("/static/", http.StripPrefix("/static/", fileServer))
+staticDir := http.Dir("./static")
+fileServer := http.FileServer(staticDir)
+http.Handle("/static/", http.StripPrefix("/static/", fileServer))
 ```
 Create a 'static' folder alongside your main.go file and add any static files like HTML, CSS and JavaScript. For example, you created 'hello.html' inside 'static' folder.
 

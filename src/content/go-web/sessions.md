@@ -27,85 +27,86 @@ Gorilla Sessions is a popular session management library for Go. It provides a f
 
 Before using Gorilla Sessions, you need to install it. Open a terminal and run the following command to install:
 
-`go get -u github.com/gorilla/sessions` 
-
+```bash
+go get -u github.com/gorilla/sessions
+```
 Let's create a simple example that uses Gorilla Sessions to manage user sessions.
 ```go
-    package main
+package main
 
-    import (
-        "fmt"
-        "net/http"
-        "github.com/gorilla/sessions"
-    )
+import (
+	"fmt"
+	"net/http"
+	"github.com/gorilla/sessions"
+)
 
-    // Key used to sign and encrypt session cookies
-    var sessionKey = [] byte("your-secret-key")
+// Key used to sign and encrypt session cookies
+var sessionKey = [] byte("your-secret-key")
 
-    // Store to keep sessions in memory. Replace it with a persistent store in production.
-    var store = sessions.NewCookieStore(sessionKey)
+// Store to keep sessions in memory. Replace it with a persistent store in production.
+var store = sessions.NewCookieStore(sessionKey)
 
-    func homeHandler(w http.ResponseWriter, r * http.Request) {
-        // Get the session for the current request
-        session, err: = store.Get(r, "my-session")
-        if err != nil {
-            http.Error(w, err.Error(), http.StatusInternalServerError)
-            return
-        }
+func homeHandler(w http.ResponseWriter, r * http.Request) {
+	// Get the session for the current request
+	session, err: = store.Get(r, "my-session")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
-        // Check if the user is authenticated
-        authStatus, ok: = session.Values["authenticated"].(bool)
-        if !ok || !authStatus {
-            // If not authenticated, redirect to the login page
-            http.Redirect(w, r, "/login", http.StatusSeeOther)
-            return
-        }
+	// Check if the user is authenticated
+	authStatus, ok: = session.Values["authenticated"].(bool)
+	if !ok || !authStatus {
+		// If not authenticated, redirect to the login page
+		http.Redirect(w, r, "/login", http.StatusSeeOther)
+		return
+	}
 
-        // If authenticated, display the home page
-        fmt.Fprint(w, "Welcome to the Home Page!")
-    }
+	// If authenticated, display the home page
+	fmt.Fprint(w, "Welcome to the Home Page!")
+}
 
-    func loginHandler(w http.ResponseWriter, r * http.Request) {
-        // Get the session for the current request
-        session, err: = store.Get(r, "my-session")
-        if err != nil {
-            http.Error(w, err.Error(), http.StatusInternalServerError)
-            return
-        }
+func loginHandler(w http.ResponseWriter, r * http.Request) {
+	// Get the session for the current request
+	session, err: = store.Get(r, "my-session")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
-        // Authenticate the user
-        session.Values["authenticated"] = true
-        session.Save(r, w)
+	// Authenticate the user
+	session.Values["authenticated"] = true
+	session.Save(r, w)
 
-        // Redirect to the home page
-        http.Redirect(w, r, "/", http.StatusSeeOther)
-    }
+	// Redirect to the home page
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+}
 
-    func logoutHandler(w http.ResponseWriter, r * http.Request) {
-        // Get the session for the current request
-        session, err: = store.Get(r, "my-session")
-        if err != nil {
-            http.Error(w, err.Error(), http.StatusInternalServerError)
-            return
-        }
+func logoutHandler(w http.ResponseWriter, r * http.Request) {
+	// Get the session for the current request
+	session, err: = store.Get(r, "my-session")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
-        // Clear the authenticated status
-        session.Values["authenticated"] = false
-        session.Save(r, w)
+	// Clear the authenticated status
+	session.Values["authenticated"] = false
+	session.Save(r, w)
 
-        // Redirect to the home page
-        http.Redirect(w, r, "/", http.StatusSeeOther)
-    }
+	// Redirect to the home page
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+}
 
-    func main() {
-        // Define routes
-        http.HandleFunc("/", homeHandler)
-        http.HandleFunc("/login", loginHandler)
-        http.HandleFunc("/logout", logoutHandler)
+func main() {
+	// Define routes
+	http.HandleFunc("/", homeHandler)
+	http.HandleFunc("/login", loginHandler)
+	http.HandleFunc("/logout", logoutHandler)
 
-        // Start the server
-        http.ListenAndServe(":8080", nil)
-    }
+	// Start the server
+	http.ListenAndServe(":8080", nil)
+}
 ```
 In this example:
 

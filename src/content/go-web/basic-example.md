@@ -13,25 +13,25 @@ Create a new file, let's call it `main.go`, and open it in your preferred code e
 Add the following code to your `main.go` file:
 
 ```go
-    package main
+package main
      
-    import (
-    	"fmt"
-    	"net/http"
-    )
-    
-    func main() {
-    	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-    		fmt.Fprint(w, "Hello World!")
-    	}
-    	
-    	http.ListenAndServe(":8080", nil)
-    }
+import (
+	"fmt"
+	"net/http"
+)
+
+func main() {
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, "Hello World!")
+	})
+	
+	http.ListenAndServe(":8080", nil)
+}
 ``` 
 Open a terminal, navigate to the directory containing your `main.go` file, and run the following command:
 
-```go
-    go run main.go
+```bash
+go run main.go
 ```
 Open your web browser and navigate to http://localhost:8080. You should see "Hello World!" displayed on the webpage.
 

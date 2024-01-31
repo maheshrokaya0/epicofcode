@@ -23,11 +23,11 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 	}
   
- signupHandler() {
-	  r.ParseForm()
-	  username := r.FormValue("username")
-	  password := r.FormValue("password")
-    }
+signupHandler() {
+	r.ParseForm()
+	username := r.FormValue("username")
+	password := r.FormValue("password")
+}
 ```
 In signupHandler, we first parsed the submitted form data from the URL query parameters then we accessed the data using FormValue method.
 

@@ -12,56 +12,56 @@ Both `html/template` and `text/template` works same except `html/template` is mo
 Templates live either as strings in your code or in their own files alongside your code.
 Here's a simple example:
 ```go
-    package main
+package main
     
-    import (
-    	"net/http"
-    	"html/template"
-    )
-    
-    // Page represents data for rendering the HTML page
-    type Page struct {
-    	Title   string
-    	Content string
-    }
-    
-    func main() {
-    	// Parse the HTML template
-    	tmpl, err := template.New("index").Parse(`
-    	<!DOCTYPE html>
-    	<html>
-    	<head>
-    		<title>{{.Title}}</title>
-    	</head>
-    	<body>
-    		<h1>{{.Title}}</h1>
-    		<p>{{.Content}}</p>
-    	</body>
-    	</html>
-    	`)
-    	if err != nil {
-    		panic(err)
-    	}
-    
-    	// Define a handler that renders the template
-    	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-    		// Data for rendering the page
-    		pageData := Page{
-    			Title:   "Welcome to My Website",
-    			Content: "This is some dynamic content.",
-    		}
-    
-    		// Execute the template with data and write the result to the response
-    		err := tmpl.Execute(w, pageData)
-    		if err != nil {
-    			http.Error(w, err.Error(), http.StatusInternalServerError)
-    			return
-    		}
-    	})
-    
-    	// Start the server
-    	http.ListenAndServe(":8080", nil)
-    }
+import (
+	"net/http"
+	"html/template"
+)
+
+// Page represents data for rendering the HTML page
+type Page struct {
+	Title   string
+	Content string
+}
+
+func main() {
+	// Parse the HTML template
+	tmpl, err := template.New("index").Parse(`
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>{{.Title}}</title>
+	</head>
+	<body>
+		<h1>{{.Title}}</h1>
+		<p>{{.Content}}</p>
+	</body>
+	</html>
+	`)
+	if err != nil {
+		panic(err)
+	}
+
+	// Define a handler that renders the template
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		// Data for rendering the page
+		pageData := Page{
+			Title:   "Welcome to My Website",
+			Content: "This is some dynamic content.",
+		}
+
+		// Execute the template with data and write the result to the response
+		err := tmpl.Execute(w, pageData)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+	})
+
+	// Start the server
+	http.ListenAndServe(":8080", nil)
+}
 ```
 In this example, we define an HTML template with placeholders ( `{{.Title}}` and `{{.Content}}` ). The Go program then parses and executes the template with specific data, rendering the HTML output.
 

@@ -12,18 +12,18 @@ The `google/uuid` package provides support for Universally Unique Identifiers (U
 
 Example:
 ```go
-    package main
+package main
 
-    import (
-        "fmt"
-        "github.com/google/uuid"
-    )
+import (
+	"fmt"
+	"github.com/google/uuid"
+)
 
-    func main() {
-        // Generate a new UUID
-        id: = uuid.New()
-        fmt.Println("UUID:", id)
-    }
+func main() {
+	// Generate a new UUID
+	id: = uuid.New()
+	fmt.Println("UUID:", id)
+}
 ```
 ### 4. `golang.org/x/crypto/bcrypt` - Password Hashing
 
@@ -31,33 +31,33 @@ The `golang.org/x/crypto/bcrypt` package is commonly used for secure password ha
 
 Example:
 ```go
-    package main
+package main
 
-    import (
-        "fmt"
-        "golang.org/x/crypto/bcrypt"
-    )
+import (
+	"fmt"
+	"golang.org/x/crypto/bcrypt"
+)
 
-    func main() {
-        // Hash a password
-        password: = [] byte("mysecretpassword")
-        hashedPassword,
-        err: = bcrypt.GenerateFromPassword(password, bcrypt.DefaultCost)
-        if err != nil {
-            fmt.Println("Error:", err)
-            return
-        }
+func main() {
+	// Hash a password
+	password: = [] byte("mysecretpassword")
+	hashedPassword,
+	err: = bcrypt.GenerateFromPassword(password, bcrypt.DefaultCost)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
 
-        // Verify the hashed password
-        err = bcrypt.CompareHashAndPassword(hashedPassword, [] byte("wrongpassword"))
-        if err == bcrypt.ErrMismatchedHashAndPassword {
-            fmt.Println("Password does not match")
-        } else if err != nil {
-            fmt.Println("Error:", err)
-        } else {
-            fmt.Println("Password is correct")
-        }
-    }
+	// Verify the hashed password
+	err = bcrypt.CompareHashAndPassword(hashedPassword, [] byte("wrongpassword"))
+	if err == bcrypt.ErrMismatchedHashAndPassword {
+		fmt.Println("Password does not match")
+	} else if err != nil {
+		fmt.Println("Error:", err)
+	} else {
+		fmt.Println("Password is correct")
+	}
+}
 ```
  
 
