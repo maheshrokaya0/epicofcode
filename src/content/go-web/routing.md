@@ -54,6 +54,7 @@ In this example, we create a new gorilla/mux router, define a route for the root
 `gorilla/mux` allows you to capture variables from the URL.
 
 Example:
+
 ```go
 router.HandleFunc("/user/{name}", func(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
@@ -75,7 +76,12 @@ router.HandleFunc("/articles/{category:[a-z]+}/{id:[0-9]+}", func(w http.Respons
 }).Methods("GET")
 ```
 
-In this example, the route pattern " /articles/{category:[a-z]+}/{id:[0-9]+} " ensures that `category` is lowercase letters, and `id` is numeric.
+In this example, the route pattern:
+
+```go
+/articles/{category:[a-z]+}/{id:[0-9]+}
+```
+ensures that `category` is lowercase letters, and `id` is numeric.
     
 ## Subrouters
 `gorilla/mux` allows you to create subrouters, which can be useful for organizing routes:
