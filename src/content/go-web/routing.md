@@ -63,7 +63,7 @@ router.HandleFunc("/user/{name}", func(w http.ResponseWriter, r *http.Request) {
 ```
 In this example, the route `/user/{name}` captures the `name` variable from the URL and responds with a personalized greeting.
 
-### Route Patterns
+## Route Patterns
 `gorilla/mux` supports flexible route patterns. For example, you can define routes with specific constraints or match patterns:
 
 ```go
@@ -75,7 +75,7 @@ router.HandleFunc("/articles/{category:[a-z]+}/{id:[0-9]+}", func(w http.Respons
 }).Methods("GET")
 ```
 
-In this example, the route pattern '/articles/{category:[a-z]+}/{id:[0-9]+}' ensures that `category` is lowercase letters, and `id` is numeric.
+In this example, the route pattern " /articles/{category:[a-z]+}/{id:[0-9]+} " ensures that `category` is lowercase letters, and `id` is numeric.
     
 ## Subrouters
 `gorilla/mux` allows you to create subrouters, which can be useful for organizing routes:
