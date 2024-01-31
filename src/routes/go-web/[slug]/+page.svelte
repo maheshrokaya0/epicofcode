@@ -5,7 +5,7 @@
 	import { error } from '@sveltejs/kit'
 	import type { Post } from '$lib/types/types.js'
 	import ChevronsRight from '$lib/icons/ChevronsRight.svelte'
-	import ChevronsLeft from '$lib/icons/ChevronsRight.svelte'
+	import ChevronsLeft from '$lib/icons/ChevronsLeft.svelte'
 
 	async function fetchMenus() {
 		try {
@@ -28,6 +28,12 @@
 	function toggleSidebar() {
 		showSidebar = !showSidebar
 	}
+
+	onMount(() => {
+		if (window.innerWidth >= 1440) {
+		showSidebar = true;
+		}
+  	});
 
 </script>
 
