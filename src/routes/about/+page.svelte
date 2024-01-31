@@ -8,7 +8,6 @@
 	<article class="px-5">
 		<h1 class="text-5xl font-normal capitalize">About</h1>
 		<div class="prose">
-			<p>Hello, I am Mahesh Rokaya.</p>
 			<p>I've created this website to share my learnings.</p>
 			<p>Everybody understands differently, and here, I share how I understood things while learning something new.</p>
 			<p>Since English is not my native language, I may make mistakes in grammar. However, you can always correct me. <a href="mailto:mahesh@gmail.com" class="underline">Contact</a> me here.</p>
