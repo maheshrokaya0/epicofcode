@@ -4,9 +4,9 @@
 <svelte:head>
 	<title>{config.siteTitle} - privacy</title>
 </svelte:head>
-<div class="max-w-xl w-full mx-auto pt-10">
+<div class="max-w-3xl w-full mx-auto pt-10">
 	<article class="px-5">
-		<h1 class="text-3xl font-normal capitalize">About</h1>
+		<h1 class="text-5xl font-normal capitalize">Privacy</h1>
 		<div class="prose">
             <p>Welcome to EpicofCode.com ("we," "us," or "our"). This Privacy Policy is designed to help you understand how we collect, use, disclose, and safeguard your personal information when you visit our website or use our services.</p>
 
