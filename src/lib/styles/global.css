@@ -1,0 +1,222 @@
+@import '@fontsource/manrope';
+@import '@fontsource/jetbrains-mono';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+	--font-sans: 'Manrope', sans-serif;
+	--font-mono: 'JetBrains Mono', monospace;
+}
+
+html,
+body {
+	height: 100%;
+	font-size: 1.1rem;
+	font-family: var(--font-sans);
+	color: #343a40;
+	background-color: #f8f9fa;
+}
+
+html {
+	color: var(--text-1);
+	accent-color: var(--link);
+	background-image: var(--background);
+	background-attachment: fixed;
+}
+
+img {
+	border-radius: var(--radius-3);
+}
+
+ul,
+ol {
+	list-style: none;
+	padding: 0;
+}
+
+li {
+	padding-inline-start: 0;
+}
+p {
+	word-spacing: .25rem;
+}
+p a {
+	text-decoration: underline;
+}
+@layer base {
+	h1 {
+	  	@apply text-2xl;
+	}
+	h2 {
+	  	@apply text-3xl font-medium;
+	}
+	h3 {
+		@apply text-2xl font-medium;
+	}
+	a {
+		@apply hover:text-cyan-500;
+	}
+}
+svg {
+	display: inline;
+}
+.prose :is(h2, h3, h4, h5, h6) {
+	margin-top: 3rem;
+	margin-bottom: 1rem;
+}
+
+.prose p:not(:is(h2, h3, h4, h5, h6) + p) {
+	margin-top: 2rem;
+}
+
+.prose :is(ul, ol) {
+	list-style-type: '🔥';
+	padding-left: 1.5rem;
+}
+
+.prose :is(ul, ol) li {
+	margin-block: .5rem;
+	padding-inline-start: .5rem;
+}
+
+.prose pre {
+	max-inline-size: 100%;
+	padding: 1rem;
+	border-radius: 8px;
+	tab-size: 2;
+}
+
+:where(:not(pre) > code) {
+	background: #e5e5e5;
+	border-radius: 5px;
+	padding: .25rem .5rem;
+	writing-mode: 1r;
+ }
+
+ :where(:not(pre) > code, kbd) {
+	white-space: nowrap;
+ }
+/**
+ * Dracula Theme originally by Zeno Rocha [@zenorocha]
+ * https://draculatheme.com/
+ *
+ * Ported for PrismJS by Albert Vallverdu [@byverdu]
+ */
+ 
+ code[class*="language-"],
+ pre[class*="language-"] {
+	 color: #f8f8f2;
+	 background: none;
+	 text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	 font-family: var(--font-mono);
+	 text-align: left;
+	 white-space: pre;
+	 word-spacing: normal;
+	 word-break: normal;
+	 word-wrap: normal;
+	 line-height: 1.5;
+	 -moz-tab-size: 4;
+	 -o-tab-size: 4;
+	 tab-size: 4;
+	 -webkit-hyphens: none;
+	 -moz-hyphens: none;
+	 -ms-hyphens: none;
+	 hyphens: none;
+ }
+ 
+ /* Code blocks */
+ pre[class*="language-"] {
+	 padding: 1em;
+	 margin: .5em 0;
+	 overflow: auto;
+	 border-radius: 0.3em;
+ }
+ 
+ :not(pre) > code[class*="language-"],
+ pre[class*="language-"] {
+	 background: #282a36;
+ }
+ 
+ /* Inline code */
+ :not(pre) > code[class*="language-"] {
+	 padding: .1em;
+	 border-radius: .3em;
+	 white-space: normal;
+ }
+ 
+ .token.comment,
+ .token.prolog,
+ .token.doctype,
+ .token.cdata {
+	 color: #6272a4;
+ }
+ 
+ .token.punctuation {
+	 color: #f8f8f2;
+ }
+ 
+ .namespace {
+	 opacity: .7;
+ }
+ 
+ .token.property,
+ .token.tag,
+ .token.constant,
+ .token.symbol,
+ .token.deleted {
+	 color: #ff79c6;
+ }
+ 
+ .token.boolean,
+ .token.number {
+	 color: #bd93f9;
+ }
+ 
+ .token.selector,
+ .token.attr-name,
+ .token.string,
+ .token.char,
+ .token.builtin,
+ .token.inserted {
+	 color: #50fa7b;
+ }
+ 
+ .token.operator,
+ .token.entity,
+ .token.url,
+ .language-css .token.string,
+ .style .token.string,
+ .token.variable {
+	 color: #f8f8f2;
+ }
+ 
+ .token.atrule,
+ .token.attr-value,
+ .token.function,
+ .token.class-name {
+	 color: #f1fa8c;
+ }
+ 
+ .token.keyword {
+	 color: #8be9fd;
+ }
+ 
+ .token.regex,
+ .token.important {
+	 color: #ffb86c;
+ }
+ 
+ .token.important,
+ .token.bold {
+	 font-weight: bold;
+ }
+ 
+ .token.italic {
+	 font-style: italic;
+ }
+ 
+ .token.entity {
+	 cursor: help;
+ }
