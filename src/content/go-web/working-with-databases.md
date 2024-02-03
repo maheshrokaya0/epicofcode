@@ -8,25 +8,18 @@ Go relies on database drivers to interact with various database management syste
 
 Before you can start working with databases, you need to install the required drivers. Open a terminal and execute the following command:
 
-```bash
-go get -u github.com/go-sql-driver/mysql
-```
+`go get -u github.com/go-sql-driver/mysql`
+
 This driver allows Go programs to connect and interact with MySQL databases.
 
-## Example: Connecting to MySQL and Executing a Query
+Along with installed driver, also we have to import `database/sql` standard package. This package provides generic interface around SQL (or SQL-like) databases.
 
+## Example
+
+This example covers on executing the basic queries like inserting, fetching, deleting and updating data in MYSQL database.
+
+Lets create variables for the MYSQL connection.
 ```go
-package main
-
-import (
-    "database/sql"
-    "fmt"
-    "log"
-
-    _ "github.com/go-sql-driver/mysql"
-)
-
-// Connection information
 const (
     username = "your_username"
     password = "your_password"
@@ -34,49 +27,65 @@ const (
     hostname = "your_hostname"
     port     = "your_port"
 )
+```
+Replace the placeholders with your actual connection details.
 
-func main() {
-    // Establish a database connection
-    db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", username, password, hostname, port, database))
-    if err != nil {
-        log.Fatal(err)
-    }
-    defer db.Close()
+### Establish a database connection
+Before executing queries, we have to make a connection between our program and a database. In Go, you can do in this way:
 
-    // Selecting data
-    rows, err := db.Query("SELECT * FROM your_table_name")
-    if err != nil {
-        log.Fatal(err)
-    }
-    defer rows.Close()
+```go
+db, err := sql.Open(“mysql”, fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", username, password, hostname, port, database))  
+if err != nil {  
+log.Fatal(err)  
+}  
+defer db.Close()
+```
+Here, we used `defer` statement to avoid closing the database connection until all the functions related to **db** executed.
 
-    // Iterate through the result set
-    for rows.Next() {
-        var column1, column2 string
-        if err := rows.Scan(&column1, &column2); err != nil {
-            log.Fatal(err)
-        }
-        fmt.Println(column1, column2)
-    }
-
-    // Inserting data
-    _, err = db.Exec("INSERT INTO your_table_name (column1, column2) VALUES (?, ?)", value1, value2)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    // Updating data
-    _, err = db.Exec("UPDATE your_table_name SET column1 = ? WHERE condition_column = ?", new_value, condition_value)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    // Deleting data
-    _, err = db.Exec("DELETE FROM your_table_name WHERE condition_column = ?", value_to_delete)
-    if err != nil {
-        log.Fatal(err)
-    }
+### Inserting data
+```go
+_, err = db.Exec("INSERT INTO your_table_name (column1, column2) VALUES (?, ?)", value1, value2)
+if err != nil {
+	log.Fatal(err)
 }
 ```
-**Note:** Replace placeholders such as `your_table_name`, `column1`, `column2`, `value1`, etc., with your actual table and column names, as well as the correct connection details.
-In this example, we connect to a MySQL database, execute a SELECT, INSERT, UPDATE and DELETE query on the "your_table_name" table, and print the results.
+
+### Fetching data 
+```go
+rows, err := db.Query("SELECT * FROM your_table_name")
+if err != nil {
+    log.Fatal(err)
+}
+
+defer rows.Close()
+
+// Iterate through the result set
+for rows.Next() {
+var  column1, column2  string
+if  err := rows.Scan(&column1, &column2); err != nil {
+	log.Fatal(err)
+}
+
+fmt.Println(column1, column2)
+}
+```
+
+### Updating data
+```go
+_, err = db.Exec("UPDATE your_table_name SET column1 = ? WHERE condition_column = ?", new_value, condition_value)
+if err != nil {
+    log.Fatal(err)
+}
+```
+
+### Deleting data
+```go
+_, err = db.Exec("DELETE FROM your_table_name WHERE condition_column = ?", value_to_delete)
+if err != nil {
+    log.Fatal(err)
+}
+```
+
+Replace placeholders such as `your_table_name`, `column1`, `column2`, `value1`, etc., with your actual table and column names.
+
+The example given is very basic. you can do more with it. It is sufficient to work with simple applications but if your app is complex and heavily dependent on databases I recommend you to use ORM like GORM, Beego, etc.  
