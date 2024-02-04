@@ -14,9 +14,15 @@ Go, also referred as Golang, is a statically-typed, compiled programming languag
  - **Scalability:** Go's design makes it well-suited for building scalable microservices and distributed systems.
  - **Robust Standard Library**: Go has standard libraries to work with web development.
 
+Do you want to know how Golang is used in big companies ? Read these [case studies](https://go.dev/solutions/case-studies).
+
 ## Get Started
 
 This tutorial will teach you the basics of web development in Golang.
 Before starting you should have the basic knowledge of Go programming language and Go installed in your device.
 If you have not installed it yet, check out the [official installation documentation](https://go.dev/doc/install).
+
+If you want to know more about the packages used in this tutorial, I recommend you to read the [official documentation](https://pkg.go.dev/std).
+
+
 

@@ -5,13 +5,7 @@
 </script>
 
 {#key url}
-	<div class="transition" in:fade>
+	<div class="h-full" in:fade>
 		<slot />
 	</div>
 {/key}
-
-<style>
-	.transition {
-		height: 100%;
-	}
-</style>
